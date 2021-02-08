@@ -7,9 +7,11 @@
       1 cookie with #{"no fillings"}
     - else
       1 cookie with #{@oven.cookie.fillings}
-    - if @oven.cookie.ready?
+    - if @oven.cookie.ready?(@oven.cookie)
       (Your Cookie is Ready)
       = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
+    - else 
+      %br #{@oven.cookie.time_left(@oven.cookie)}
   - else
     None
 
