@@ -11,7 +11,10 @@
       (Your Cookie is Ready)
       = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
     - else 
-      %br #{@oven.cookie.time_left(@oven.cookie)}
+      %br Cookie will be ready in about #{@oven.cookie.time_left(@oven.cookie)} minutes
+      %meta{:content => "#{@oven.cookie.time_left(@oven.cookie)*60}", "http-equiv" => "refresh"}
+
+
   - else
     None
 

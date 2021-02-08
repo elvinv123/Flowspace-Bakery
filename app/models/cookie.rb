@@ -18,7 +18,7 @@ class Cookie < ActiveRecord::Base
     if(time < 1 )
       return "Cookie is ready for pickup"
     end
-    return "Cookie will be ready in about #{(time/60).round()} minutes"
+    return (time/60).round()
   end
 
 end
