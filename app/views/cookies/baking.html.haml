@@ -1,4 +1,4 @@
-%h3 New Cookie for oven '#{@oven.name}'
+%h3 Currently baking '#{@oven.name}'
 
 = form_for [@oven, @cookie] do |f|
   .row
@@ -7,12 +7,6 @@
   .row
     .small-8.columns
       = f.text_field :fillings
-  .row
-    .small-8.columns
-      = f.label :pickup_time
-  .row
-    .small-8.columns
-      = f.text_field :pickup_time
 
   .row
     .small-8.columns

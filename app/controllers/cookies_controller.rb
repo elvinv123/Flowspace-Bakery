@@ -12,13 +12,18 @@ class CookiesController < ApplicationController
 
   def create
     @oven = current_user.ovens.find_by!(id: params[:oven_id])
-    @cookie = @oven.create_cookie!(cookie_params)
+    @cookie = @oven.create_cookie!(
+      {
+      "fillings" => cookie_params["fillings"], 
+      "pickup_time" => Time.now + cookie_params["pickup_time"].to_i.minutes
+      })
+
     redirect_to oven_path(@oven)
   end
 
   private
 
   def cookie_params
-    params.require(:cookie).permit(:fillings)
+    params.require(:cookie).permit(:fillings, :pickup_time)
   end
 end
