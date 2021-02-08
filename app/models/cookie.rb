@@ -14,11 +14,12 @@ class Cookie < ActiveRecord::Base
   end
 
   def time_left(cookie)
-    time = cookie.pickup_time - cookie.created_at
+    time = cookie.pickup_time - Time.now
+    # byebug
     if(time < 1 )
       return "Cookie is ready for pickup"
     end
-    return "Cookie will be ready in about #{(time/60).round()} minutes"
+    return (time/60).round()
   end
 
 end
