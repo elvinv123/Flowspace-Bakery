@@ -2,7 +2,7 @@
 
 .cookie-info
   Cookie in oven:
-  - if @oven.cookies.to_a.length > 1
+  - if @oven.cookies.to_a.length > 0
     - if (@oven.cookies.to_a[0].fillings == "")
       #{@oven.cookies.to_a.length} cookies with #{"no fillings"}
     - else

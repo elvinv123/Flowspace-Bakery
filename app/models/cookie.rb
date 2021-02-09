@@ -7,7 +7,6 @@ class Cookie < ActiveRecord::Base
   validates :batch_number, presence: true
 
   def ready?(cookie)
-    # byebug
     if(cookie.pickup_time >= Time.now) 
       return false
     end
@@ -16,7 +15,6 @@ class Cookie < ActiveRecord::Base
 
   def time_left(cookie)
     time = cookie.pickup_time - Time.now
-    # byebug
     if(time < 1 )
       return "Cookie is ready for pickup"
     end
