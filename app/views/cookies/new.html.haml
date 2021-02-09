@@ -1,6 +1,6 @@
 %h3 New Cookie for oven '#{@oven.name}'
 
-= form_for [@oven, @cookie] do |f|
+= form_for([@oven, @cookie], :url => {:controller => "cookies", :action=> "create", :batch_size => @batch_size}) do |f|
   .row
     .small-8.columns
       = f.label :fillings
@@ -13,6 +13,12 @@
   .row
     .small-8.columns
       = f.text_field :pickup_time
+  .row
+    .small-8.columns
+      = f.label "Number of Cookies"
+  .row
+    .small-8.columns
+    = text_field_tag :batch_size, @batch_size
 
   .row
     .small-8.columns

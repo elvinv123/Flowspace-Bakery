@@ -4,6 +4,7 @@ class Cookie < ActiveRecord::Base
   belongs_to :storage, polymorphic: :true
   
   validates :storage, presence: true
+  validates :batch_number, presence: true
 
   def ready?(cookie)
     # byebug
