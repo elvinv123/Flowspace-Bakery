@@ -2,17 +2,17 @@
 
 .cookie-info
   Cookie in oven:
-  - if @oven.cookie
-    - if (@oven.cookie.fillings == "")
-      1 cookie with #{"no fillings"}
+  - if @oven.cookies.to_a.length > 1
+    - if (@oven.cookies.to_a[0].fillings == "")
+      #{@oven.cookies.to_a.length} cookies with #{"no fillings"}
     - else
-      1 cookie with #{@oven.cookie.fillings}
-    - if @oven.cookie.ready?(@oven.cookie)
-      (Your Cookie is Ready)
+      #{@oven.cookies.to_a.length} cookies with #{@oven.cookies.to_a[0].fillings}
+    - if @oven.cookies.to_a[0].ready?(@oven.cookies.to_a[0])
+      (Your Cookies are Ready)
       = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
     - else 
-      %br Cookie will be ready in about #{@oven.cookie.time_left(@oven.cookie)} minutes
-      %meta{:content => "#{@oven.cookie.time_left(@oven.cookie)*60}", "http-equiv" => "refresh"}
+      %br Cookie will be ready in about #{@oven.cookies.to_a[0].time_left(@oven.cookies.to_a[0])} minutes
+      %meta{:content => "#{@oven.cookies.to_a[0].time_left(@oven.cookies.to_a[0])*60}", "http-equiv" => "refresh"}
 
 
   - else
