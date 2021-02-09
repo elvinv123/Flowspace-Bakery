@@ -4,7 +4,7 @@ class CookiesController < ApplicationController
 
   def new
     @oven = current_user.ovens.find_by!(id: params[:oven_id])
-    byebug
+  
     if @oven.cookies.length > 0
       redirect_to @oven, alert: 'A cookie is already in the oven!'
     else

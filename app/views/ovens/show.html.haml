@@ -8,7 +8,7 @@
     - else
       #{@oven.cookies.to_a.length} cookies with #{@oven.cookies.to_a[0].fillings}
     - if @oven.cookies.to_a[0].ready?(@oven.cookies.to_a[0])
-      (Your Cookie is Ready)
+      (Your Cookies are Ready)
       = button_to "Retrieve Cookie", empty_oven_path, class: 'button tiny'
     - else 
       %br Cookie will be ready in about #{@oven.cookies.to_a[0].time_left(@oven.cookies.to_a[0])} minutes
