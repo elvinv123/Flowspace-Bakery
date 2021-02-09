@@ -19,3 +19,12 @@
 $(function() {
   $(document).foundation();
 });
+$(document).ready(function(){
+  let $window = $(window);
+  console.log($window.width())
+  if($window.width() <640){
+    $("a[href='/ovens/1/cookies/new']").prependTo('main').css('marginTop', '10px');
+  }
+
+  }
+)

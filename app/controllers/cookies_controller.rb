@@ -1,12 +1,18 @@
 class CookiesController < ApplicationController
   before_action :authenticate_user!
-  @@batch_number = Cookie.last.batch_number + 1
+
+  def get_batch_number
+    if(Cookie.last)
+      @batch_number = Cookie.last.batch_number + 1
+    else
+      @batch_number = 0
+    end
+  end
 
   def new
     @oven = current_user.ovens.find_by!(id: params[:oven_id])
-  
-    if @oven.cookies.length > 0
-      redirect_to @oven, alert: 'A cookie is already in the oven!'
+    if @oven.cookies.to_a.length > 0
+      redirect_to @oven, alert: 'There are cookies already in the oven!'
     else
       @cookie = @oven.cookies.build
     end
@@ -20,7 +26,7 @@ class CookiesController < ApplicationController
         {
         "fillings" => cookie_params["fillings"], 
         "pickup_time" => Time.now + cookie_params["pickup_time"].to_i.minutes,
-        "batch_number" => @@batch_number,
+        "batch_number" => get_batch_number,
         "storage_id" => @oven.id,
         "storage_type" => "Oven",
         })
